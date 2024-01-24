@@ -21,3 +21,5 @@
 
 - El method PUT funciona pero con postman, no me quiso trabajar en la app, es lo unico que faltó, queria intentarlo otra vez pero se me movian mas cosas.
 - En la app trabaja el GET, POST, DELETE
+
+- Use Bootstrap => npm install bootstrap jquery @popperjs/core
