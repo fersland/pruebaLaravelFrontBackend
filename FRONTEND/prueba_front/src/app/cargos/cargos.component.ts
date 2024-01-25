@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ServiceService } from './service.service';
 import { Cargo } from './cargo';
 import { Observable } from 'rxjs';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-cargos',
@@ -10,12 +11,62 @@ import { Observable } from 'rxjs';
 })
 export class CargosComponent implements OnInit {
   cargosList$!:Observable<any[]>;
-  
-  constructor(private service:ServiceService){}
+
+  data: any[] = [];
+
+  formGroup :FormGroup;
+
+  UsuariosList: any;
+  SelectedValue:any;
+  changeUsuarios(e){
+    console.log(e.target.value);
+    this.SelectedValue=e.target.value;
+  }
+
+  constructor(private formbuilder:FormBuilder, private service:ServiceService){
+    this.formGroup = this.formbuilder.group({
+      codigo:[' ',[Validators.required]],
+      nombre:[' ',[Validators.required]],
+      activo:[' ',[Validators.required]],
+      idUsuario:[' ',[Validators.required]]
+    })
+  }
+
+  // Cerrar MODAL
+  @Output() closeModalEvent = new EventEmitter<boolean>();
+  onCloseModal(event: any){
+    this.closeModalEvent.emit(false);  
+   }
 
   ngOnInit(): void{
-      this.cargosList$ = this.service.viewCargos();
-      
+    
+    this.cargosList$ = this.service.viewCargos();
+    this.loadData();
+
+    this.service.getData().subscribe((data: any) => {
+      this.UsuariosList = data;
+    })
+  }
+
+  onFormSubmit(){
+    let book=this.formGroup.value;
+    this.formGroup.reset();
+
+    
+  }
+  
+  onSubmit(){
+    console.log(this.formGroup.value);
+    this.service.saveCargo(this.formGroup.value).subscribe(response => {
+      console.log('Cargo added successfully!');
+        //this.cargosList$ = this.service.viewCargos();
+    })
+  }
+
+  loadData() {
+    this.service.getData().subscribe((result) => {
+      this.data = result;
+    });
   }
 
   items: Cargo[] = [];
@@ -28,4 +79,6 @@ export class CargosComponent implements OnInit {
       })
     }  
   }
+
+  
 }
