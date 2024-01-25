@@ -25,8 +25,8 @@ export class CargosComponent implements OnInit {
 
   constructor(private formbuilder:FormBuilder, private service:ServiceService){
     this.formGroup = this.formbuilder.group({
-      codigo:[' ',[Validators.required]],
-      nombre:[' ',[Validators.required]],
+      codigo:[' ',[Validators.required,Validators.pattern('a-zA-ZñÑá-úÁ-Ú')]],
+      nombre:[' ',[Validators.required,Validators.pattern('a-zA-ZñÑá-úÁ-Ú')]],
       activo:[' ',[Validators.required]],
       idUsuario:[' ',[Validators.required]]
     })
