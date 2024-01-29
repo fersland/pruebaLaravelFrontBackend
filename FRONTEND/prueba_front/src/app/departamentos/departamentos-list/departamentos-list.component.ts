@@ -17,7 +17,7 @@ export class DepartamentosListComponent {
   UsuariosList: any;
   SelectedValue:any;
   changeUsuarios(e){
-    console.log(e.target.value);
+    //console.log(e.target.value); => VERIFICAR QUE ID SE SELECCIONÓ!
     this.SelectedValue=e.target.value;
   }
 

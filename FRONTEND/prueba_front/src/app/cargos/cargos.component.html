@@ -6,9 +6,9 @@
             
         <!-- Button trigger modal -->
     <button type="button" class="btn btn-outline-primary"
-    role="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
-    Crear Nuevo Cargo
-  </button>
+      role="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      Crear Nuevo
+    </button>
 
         </div>                    
     </div>            
@@ -28,7 +28,7 @@
                       <tr>
                           <td>{{ item.codigo }}</td>
                           <td>{{ item.nombre }}</td>
-                          <td>{{ item.primerNombre + " " + item.segundoNombre + " " + item.primerApellido + " " + item.segundoApellido }}</td>
+                          <td>{{ item.usuario }}</td>
                           <td>
                               <!--<button data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-outline-success">Editar</button> &nbsp;-->
 
@@ -96,7 +96,7 @@
 
       </div>
       <div class="modal-footer">
-        <button class="btn btn-primary" data-bs-dismiss="modal" type="submit">Guardar</button>
+        <button class="btn btn-primary" type="submit">Guardar</button>
       </div>
 
     </form>

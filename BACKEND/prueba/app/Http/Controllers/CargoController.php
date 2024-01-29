@@ -20,7 +20,7 @@ class CargoController extends Controller
 
         // PRUEBA INNER 
         $inner = Cargo::join('usuarios', 'cargos.idUsuario', '=', 'usuarios.id')
-            ->get(['cargos.*', 'usuarios.primerNombre', 'usuarios.segundoNombre', 'usuarios.primerApellido', 'usuarios.segundoApellido']);
+            ->get(['cargos.*', 'usuarios.usuario', 'usuarios.primerNombre', 'usuarios.segundoNombre', 'usuarios.primerApellido', 'usuarios.segundoApellido']);
         return response()->json($inner);
     }
 

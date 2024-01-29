@@ -18,7 +18,7 @@ class DepartamentoController extends Controller
         */
 
         $departamento = Departamento::join('usuarios', 'departamentos.idUsuario', '=', 'usuarios.id')
-                ->get(['departamentos.*', 'usuarios.primerNombre', 'usuarios.segundoNombre', 'usuarios.primerApellido', 'usuarios.segundoApellido']);
+                ->get(['departamentos.*', 'usuarios.usuario', 'usuarios.primerNombre', 'usuarios.segundoNombre', 'usuarios.primerApellido', 'usuarios.segundoApellido']);
         return response()->json($departamento);
     }
 

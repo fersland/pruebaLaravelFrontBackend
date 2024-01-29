@@ -4,7 +4,7 @@
     <div>
         <button type="button" class="btn btn-outline-primary"
           role="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
-          Crear Nuevo Departamento
+          Crear Nuevo
         </button>
     </div>                    
 </div>            
@@ -24,7 +24,7 @@
                     <tr>
                         <td>{{ item.codigo }}</td>
                         <td>{{ item.nombre }}</td>
-                        <td>{{ item.primerNombre + " " + item.segundoNombre + " " + item.primerApellido + " " + item.segundoApellido }}</td>
+                        <td>{{ item.usuario }}</td>
                         <td>
                             <a class="btn btn-outline-success" routerLink="/departamentos/edit/{{ item.id }}">Editar</a> &nbsp;
 
