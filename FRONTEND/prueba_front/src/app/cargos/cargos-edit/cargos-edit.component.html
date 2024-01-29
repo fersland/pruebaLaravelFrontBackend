@@ -1,45 +1,69 @@
-<div class="container-fluid mt-5">
-    <div class="row">
-        <div class="col-md-12">
-          <h2>Administración de Cargos - Editar</h2>
+  <div class="d-flex justify-content-between py-3">
+      <div class="h4">Administración de Cargos</div>            
+      <div>          
+        <a routerLink="cargos" class="btn btn-outline-primary">Volver</a>
+      </div>                    
+  </div>            
+  <div class="row">
+    <div *ngIf="alert" class="alert alert-success alert-dismissible fade show" role="alert">
+      <strong>Correcto!</strong> Los datos fueron actualizados!
+
+      <button (click)="closeAlert()" type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+
+      </button>
+    </div>
+      <div class="card border-0 shadow-lg">
+          <div class="card-body">
             
-            <form class="row g-3" method="post" [formGroup]="formGroup" (ngSubmit)="onSubmit()">
-                <div class="col-md-6">
-                  <label for="validationServer01" class="form-label">Codigo</label>
-                  <input type="text" class="form-control" formControlName="codigo" id="validationServer01" required>
+          <form class="row g-3" [formGroup]="formGroup" (ngSubmit)="updateData()">
+            <div class="modal-body">
+              <p>Los campos con (*) son obligatgorios.</p>
+              
+                  <div class="col-md-12">
+                    <label class="form-label">Codigo</label>
+                    <input type="text" class="form-control" 
+                                  formControlName="codigo" id="codigo"
 
-                </div>
-                <div class="col-md-6">
-                  <label for="validationServer02" class="form-label">Nombre</label>
-                  <input type="text" class="form-control" formControlName="nombre" id="validationServer02" required>
-                </div>
-                <div class="col-md-6">
-                  <label for="validationServer03" class="form-label">Activo</label>
-                  <select class="form-select" formControlName="activo" id="validationServer04" required>
-                    <option value="">-- Seleccione --</option>
-                    <option value="true">SI</option>
-                    <option value="false">NO</option>
-                  </select>
-                  
-                </div>
-                <div class="col-md-3">
-                  <label for="validationServer04" class="form-label">Usuario</label>
-
-                  <select formControlName="idUsuario" (change)="changeUsuarios($event)" class="form-control">
-                    <option value="0" selected>--SELECCIONE USUARIO --</option>
-                    <option [value]="item.id" *ngFor="let item of UsuariosList" [value]="item.id">
-                      {{ item.primerNombre }}
-                    </option>
-                  </select>
-
-                  <!-- Selected Valud: {{ SelectedValue }} -->
-
-                </div>
-
-                <div class="col-12">
-                  <button class="btn btn-primary" type="submit">Guardar</button>
-                </div>
-              </form>
+                                  required >
+                  </div>
+                  <div class="col-md-12">
+                    <label class="form-label">Nombre</label>
+                    <input type="text" class="form-control" id="nombre"
+                                  onkeydown="return /[a-z, ]/i.test(event.key)" 
+                                  formControlName="nombre" 
+                                  required >
+                  </div>
+                  <div class="col-md-12">
+                    <label class="form-label">Activo</label>
+                    <select class="form-select" id="activo"
+                            formControlName="activo" 
+                                  required >
+                      <option value="1">SI</option>
+                      <option value="0">NO</option>
+                    </select>
+                    
+                  </div>
+                  <div class="col-md-12">
+                    <label class="form-label">Usuario</label>
+      
+                    <select class="form-select" 
+                                  formControlName="idUsuario" id="idUsuario"
+                                  (change)="changeUsuarios($event)" >
+                      <option [value]="item.id" *ngFor="let item of UsuariosList" [value]="item.id">
+                        {{ item.primerNombre }}
+                      </option>
+                    </select>
+      
+                    <!-- Selected Valud: {{ SelectedValue }} -->
+      
+                  </div>
+      
+            </div>
+            <div class="modal-footer">
+              <button class="btn btn-success" data-bs-dismiss="modal" type="submit">Update</button>
+            </div>
+      
+          </form>
         </div>
     </div>
 </div>

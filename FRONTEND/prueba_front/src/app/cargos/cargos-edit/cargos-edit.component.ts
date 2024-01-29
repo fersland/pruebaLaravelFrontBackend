@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ServiceService } from '../service.service';
+import { ActivatedRoute } from '@angular/router';
+import { Cargo } from '../cargo';
 
 @Component({
   selector: 'app-cargos-edit',
@@ -8,16 +10,14 @@ import { ServiceService } from '../service.service';
   styleUrls: ['./cargos-edit.component.sass']
 })
 export class CargosEditComponent implements OnInit {
-  formGroup :FormGroup;
+  formGroup !:FormGroup;
+  alert:boolean = false;
 
-  constructor(private formbuilder:FormBuilder, private service:ServiceService) { 
-    this.formGroup = this.formbuilder.group({
-      codigo:[' ',[Validators.required]],
-      nombre:[' ',[Validators.required]],
-      activo:[' ',[Validators.required]],
-      idUsuario:[' ',[Validators.required]]
-    })
-  }
+  constructor(private _route: ActivatedRoute, private formbuilder:FormBuilder, private service:ServiceService) { }
+
+  id:any;
+  cargo:Cargo;
+  loscargo : any;
 
   UsuariosList: any;
   SelectedValue:any;
@@ -27,42 +27,55 @@ export class CargosEditComponent implements OnInit {
   }
 
   dataIn: any[] = [];
+  data: any;
 
-  ngOnInit(){
-  this.loadData();
+  // CARGAR LISTADO DE CARGOS DISPONIBLES
+  getCargosdata(){
+    this.service.viewCargos().subscribe(response => {
+      this.loscargo = response;
+    })
+  }
 
-  this.service.getData().subscribe((data: any) => {
-    this.UsuariosList = data;
+ngOnInit(): void{
+  //this.loadData();
+  this.getCargosdata();
+
+  
+  this.formGroup = this.formbuilder.group({
+    id:[' '],
+    codigo:[' ',[Validators.required]],
+    nombre:[' ',[Validators.required]],
+    activo:[' ',[Validators.required]],
+    idUsuario:[' ',[Validators.required]]
   })
-
+  
+  //this.id = this._route.snapshot.params['id'];
+  console.log(this._route.snapshot.params['id']);
+  this.service.getCargosId(this._route.snapshot.params['id']).subscribe((results) => {
+    this.formGroup = new FormGroup({
+      codigo: new FormControl(results['codigo']),
+      nombre: new FormControl(results['nombre']),
+      activo: new FormControl(results['activo']),
+      idUsuario: new FormControl(results['idUsuario'])
+    })
+  })
+  this.service.getUsuarios().subscribe((data: any) => {
+    this.UsuariosList = data;    
+  })
 }
 
-  showForm(data){
+updateData(){
+  this.service.updateData(this._route.snapshot.params['id'], this.formGroup.value).subscribe((results) => {
+    console.log('Data Upated Successfully');
+    this.alert = true;
+  })
+}
 
-    this.formGroup = data;
+closeAlert(){
+  this.alert = false;
+}
 
-    this.formGroup.patchValue({
 
-      id:data.id,
 
-      codigo:data.codigo,
 
-      nombre:data.nombre,
-
-      activo:data.activo
-
-    });
-
-  }
-
-  onSubmit(){
-    console.log(this.formGroup.value);
-    
-  }
-
-  loadData() {
-    this.service.getData().subscribe((result) => {
-      this.dataIn = result;
-    });
-  }
 }

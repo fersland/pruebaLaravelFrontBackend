@@ -1,12 +1,12 @@
-<div class="container-fluid mt-3">
-    <p>Modulo de Administración</p>
+
     <div class="d-flex justify-content-between py-3">
         <div class="h4">Administración de Cargos
         </div>            
         <div>
             
         <!-- Button trigger modal -->
-    <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    <button type="button" class="btn btn-outline-primary"
+    role="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
     Crear Nuevo Cargo
   </button>
 
@@ -32,7 +32,9 @@
                           <td>{{ item.activo }}</td>
                           <td>{{ item.idUsuario }}</td>
                           <td>
-                              <a routerLink="/cargos/edit/{{ item.id }}" class="btn btn-outline-success">Editar</a> &nbsp;
+                              <!--<button data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-outline-success">Editar</button> &nbsp;-->
+
+                              <a routerLink="/cargos/edit/{{ item.id }}" class="btn btn-outline-success">Editar</a>
 
                               <button type="button" (click)='deleteCargo(item.id)' class="btn btn-outline-danger">Delete</button>
                           </td>
@@ -43,6 +45,8 @@
     </div>
 </div>
 
+<div className="modal-dialog modal-dialog-centered" data-bs-config={backdrop:true}></div>
+
 
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
   <div class="modal-dialog modal-ml">
@@ -52,21 +56,28 @@
         
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <form class="row g-3" method="post" [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+      <form class="row g-3" method="post" [formGroup]="formGroup" (ngSubmit)="insertData()">
       <div class="modal-body">
         <p>Los campos con (*) son obligatgorios.</p>
         
             <div class="col-md-12">
               <label class="form-label">Codigo</label>
-              <input type="text" class="form-control" formControlName="codigo"  required>
+              <input type="text" class="form-control" 
+                            formControlName="codigo" 
+                            required >
             </div>
             <div class="col-md-12">
               <label class="form-label">Nombre</label>
-              <input type="text" class="form-control" formControlName="nombre" onkeydown="return /[a-z, ]/i.test(event.key)" required>
+              <input type="text" class="form-control" 
+                            formControlName="nombre" 
+                            onkeydown="return /[a-z, ]/i.test(event.key)" 
+                            required >
             </div>
             <div class="col-md-12">
               <label class="form-label">Activo</label>
-              <select class="form-select" formControlName="activo" required>
+              <select class="form-select" 
+                      formControlName="activo" 
+                            required >
                 <option value="true">SI</option>
                 <option value="false">NO</option>
               </select>
@@ -75,7 +86,9 @@
             <div class="col-md-12">
               <label class="form-label">Usuario</label>
 
-              <select class="form-select" formControlName="idUsuario" (change)="changeUsuarios($event)" >
+              <select class="form-select" 
+                            formControlName="idUsuario" 
+                            (change)="changeUsuarios($event)" >
                 <option [value]="item.id" *ngFor="let item of UsuariosList" [value]="item.id">
                   {{ item.primerNombre }}
                 </option>
@@ -93,4 +106,3 @@
     </form>
     </div>
   </div>
-</div>

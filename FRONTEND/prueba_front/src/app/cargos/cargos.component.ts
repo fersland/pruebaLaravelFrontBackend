@@ -11,10 +11,13 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class CargosComponent implements OnInit {
   cargosList$!:Observable<any[]>;
+  cargos:any;
 
-  data: any[] = [];
-
-  formGroup :FormGroup;
+  getCargosdata(){
+    this.service.viewCargos().subscribe(response => {
+      this.cargos = response;
+    })
+  }
 
   UsuariosList: any;
   SelectedValue:any;
@@ -23,53 +26,43 @@ export class CargosComponent implements OnInit {
     this.SelectedValue=e.target.value;
   }
 
-  constructor(private formbuilder:FormBuilder, private service:ServiceService){
+  formGroup :FormGroup;
+  constructor(private formbuilder:FormBuilder, private service:ServiceService){ }
+
+  ngOnInit(): void{    
+    this.cargosList$ = this.service.viewCargos();
+    this.loadDataUsuarios();
+
     this.formGroup = this.formbuilder.group({
+      id:[''],
       codigo:[' ',[Validators.required,Validators.pattern('a-zA-ZñÑá-úÁ-Ú')]],
       nombre:[' ',[Validators.required,Validators.pattern('a-zA-ZñÑá-úÁ-Ú')]],
       activo:[' ',[Validators.required]],
       idUsuario:[' ',[Validators.required]]
     })
-  }
 
-  // Cerrar MODAL
-  @Output() closeModalEvent = new EventEmitter<boolean>();
-  onCloseModal(event: any){
-    this.closeModalEvent.emit(false);  
-   }
-
-  ngOnInit(): void{
-    
-    this.cargosList$ = this.service.viewCargos();
-    this.loadData();
-
-    this.service.getData().subscribe((data: any) => {
-      this.UsuariosList = data;
-    })
-  }
-
-  onFormSubmit(){
-    let book=this.formGroup.value;
-    this.formGroup.reset();
+    this.service.getUsuarios().subscribe((dataListarUsuarios: any) => {
+      this.UsuariosList = dataListarUsuarios;
+      });
 
     
   }
-  
-  onSubmit(){
+
+  insertData(){
     console.log(this.formGroup.value);
     this.service.saveCargo(this.formGroup.value).subscribe(response => {
       console.log('Cargo added successfully!');
-        //this.cargosList$ = this.service.viewCargos();
+      this.cargosList$ = this.service.viewCargos();
+      this.formGroup.reset();
     })
   }
 
-  loadData() {
-    this.service.getData().subscribe((result) => {
-      this.data = result;
+  cargarDataUsuarios: any[] = [];
+  loadDataUsuarios() {
+    this.service.getUsuarios().subscribe((result) => {
+      this.cargarDataUsuarios = result;
     });
   }
-
-  items: Cargo[] = [];
 
   deleteCargo(id:number){
     if(confirm("Seguro desea eliminar este registro?")){
@@ -79,6 +72,8 @@ export class CargosComponent implements OnInit {
       })
     }  
   }
+
+  // ACTUALIZAR ++++++++++++++++++++++++
 
   
 }

@@ -37,7 +37,7 @@ ngOnInit(){
   this.cargosList$ = this.service.viewCargos();
   this.loadData();
 
-  this.service.getData().subscribe((data: any) => {
+  this.service.getUsuarios().subscribe((data: any) => {
     this.UsuariosList = data;
   })
 }
@@ -56,7 +56,7 @@ onSubmit(){
 }
 
 loadData() {
-  this.service.getData().subscribe((result) => {
+  this.service.getUsuarios().subscribe((result) => {
     this.data = result;
   });
 }

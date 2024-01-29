@@ -36,9 +36,14 @@ class CargoController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function getCargoId($id)
     {
-        //
+        $cargo = Cargo::find($id);
+        if(is_null($cargo)) {
+            return response()->json(['message' => 'Cargo no encontrado', 404]);
+        }
+
+        return response()->json($cargo::find($id), 200);
     }
 
 
@@ -48,6 +53,7 @@ class CargoController extends Controller
     public function update(Request $request, string $id)
     {
         $cargos = Cargo::findOrFail($request->id);
+        $cargos->codigo = $request->codigo;
         $cargos->nombre = $request->nombre;
         $cargos->activo = $request->activo;
         $cargos->idUsuario = $request->idUsuario;

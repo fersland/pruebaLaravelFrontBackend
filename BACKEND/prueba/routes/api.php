@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 
 // CARGOS
 Route::get('cargos', [CargoController::class, 'index']);
+Route::get('cargos/show/{id}', [CargoController::class, 'getCargoId']);
 Route::post('cargos/store', [CargoController::class, 'store']);
 Route::put('cargos-edit/{id}', 'App\Http\Controllers\CargoController@update');
 Route::delete('cargos/{id}', 'App\Http\Controllers\CargoController@destroy');

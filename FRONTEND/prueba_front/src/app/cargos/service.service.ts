@@ -18,11 +18,15 @@ export class ServiceService {
     return this.httpClient.get<any>(`http://127.0.0.1:8000/api/cargos`);
   }
 
+  getCargosId(id){
+    return this.httpClient.get(`http://127.0.0.1:8000/api/cargos/show/`+ id);
+  }
+
   saveCargo(model:Cargo):Observable<Cargo>{
     return this.httpClient.post<Cargo>(`http://127.0.0.1:8000/api/cargos/store`,model);
   }
 
-  getData(): Observable<any[]> {
+  getUsuarios(): Observable<any[]> {
     return this.httpClient.get<any[]>(`http://127.0.0.1:8000/api/usuarios`);
   }
 
