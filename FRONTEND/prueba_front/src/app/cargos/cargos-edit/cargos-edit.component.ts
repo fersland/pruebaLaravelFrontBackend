@@ -16,8 +16,6 @@ export class CargosEditComponent implements OnInit {
   constructor(private _route: ActivatedRoute, private formbuilder:FormBuilder, private service:ServiceService) { }
 
   id:any;
-  cargo:Cargo;
-  loscargo : any;
 
   UsuariosList: any;
   SelectedValue:any;
@@ -26,21 +24,7 @@ export class CargosEditComponent implements OnInit {
     this.SelectedValue=e.target.value;
   }
 
-  dataIn: any[] = [];
-  data: any;
-
-  // CARGAR LISTADO DE CARGOS DISPONIBLES
-  getCargosdata(){
-    this.service.viewCargos().subscribe(response => {
-      this.loscargo = response;
-    })
-  }
-
 ngOnInit(): void{
-  //this.loadData();
-  this.getCargosdata();
-
-  
   this.formGroup = this.formbuilder.group({
     id:[' '],
     codigo:[' ',[Validators.required]],

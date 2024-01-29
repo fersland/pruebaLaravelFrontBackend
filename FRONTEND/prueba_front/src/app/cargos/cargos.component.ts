@@ -34,7 +34,7 @@ export class CargosComponent implements OnInit {
     this.loadDataUsuarios();
 
     this.formGroup = this.formbuilder.group({
-      id:[''],
+      //id:[''],
       codigo:[' ',[Validators.required,Validators.pattern('a-zA-ZñÑá-úÁ-Ú')]],
       nombre:[' ',[Validators.required,Validators.pattern('a-zA-ZñÑá-úÁ-Ú')]],
       activo:[' ',[Validators.required]],
@@ -44,8 +44,6 @@ export class CargosComponent implements OnInit {
     this.service.getUsuarios().subscribe((dataListarUsuarios: any) => {
       this.UsuariosList = dataListarUsuarios;
       });
-
-    
   }
 
   insertData(){

@@ -11,7 +11,14 @@ class DepartamentoController extends Controller
      */
     public function index()
     {
+        /*
         $departamento = Departamento::all();
+        return response()->json($departamento);
+
+        */
+
+        $departamento = Departamento::join('usuarios', 'departamentos.idUsuario', '=', 'usuarios.id')
+                ->get(['departamentos.*', 'usuarios.primerNombre', 'usuarios.segundoNombre', 'usuarios.primerApellido', 'usuarios.segundoApellido']);
         return response()->json($departamento);
     }
 
@@ -37,9 +44,14 @@ class DepartamentoController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function getDepartamentoId($id)
     {
-        //
+        $departamento = Departamento::find($id);
+        if(is_null($departamento)) {
+            return response()->json(['message' => 'Departamento no encontrado', 404]);
+        }
+
+        return response()->json($departamento::find($id), 200);
     }
 
 

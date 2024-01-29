@@ -20,7 +20,6 @@
                       <tr>
                           <th>CODIGO</th>
                           <th>NOMBRE</th>
-                          <th>ACTIVO</th>
                           <th>USUARIO</th>
                       </tr>
                   </thead>
@@ -29,12 +28,11 @@
                       <tr>
                           <td>{{ item.codigo }}</td>
                           <td>{{ item.nombre }}</td>
-                          <td>{{ item.activo }}</td>
-                          <td>{{ item.idUsuario }}</td>
+                          <td>{{ item.primerNombre + " " + item.segundoNombre + " " + item.primerApellido + " " + item.segundoApellido }}</td>
                           <td>
                               <!--<button data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-outline-success">Editar</button> &nbsp;-->
 
-                              <a routerLink="/cargos/edit/{{ item.id }}" class="btn btn-outline-success">Editar</a>
+                              <a routerLink="/cargos/edit/{{ item.id }}" class="btn btn-outline-success">Editar</a> &nbsp;
 
                               <button type="button" (click)='deleteCargo(item.id)' class="btn btn-outline-danger">Delete</button>
                           </td>
@@ -44,8 +42,6 @@
         </div>
     </div>
 </div>
-
-<div className="modal-dialog modal-dialog-centered" data-bs-config={backdrop:true}></div>
 
 
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
@@ -106,3 +102,4 @@
     </form>
     </div>
   </div>
+</div>

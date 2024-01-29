@@ -19,6 +19,10 @@ export class DepartamentosService {
     return this.http.get<any[]>(`http://127.0.0.1:8000/api/usuarios`);
   }
 
+  getDepartamentosId(id){
+    return this.http.get(`http://127.0.0.1:8000/api/departamentos/show/`+ id);
+  }
+
   saveCargo(model:Departamento):Observable<Departamento>{
     return this.http.post<Departamento>(`http://127.0.0.1:8000/api/departamentos/store`,model);
   }

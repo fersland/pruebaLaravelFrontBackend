@@ -24,13 +24,15 @@ Route::post('cargos/store', [CargoController::class, 'store']);
 Route::put('cargos-edit/{id}', 'App\Http\Controllers\CargoController@update');
 Route::delete('cargos/{id}', 'App\Http\Controllers\CargoController@destroy');
 
+// DEPARTAMENTOS
+Route::get('departamentos', [DepartamentoController::class, 'index']);
+Route::get('departamentos/show/{id}', [DepartamentoController::class, 'getDepartamentoId']);
+Route::post('departamentos/store', [DepartamentoController::class, 'store']);
+Route::put('departamentos-edit/{id}', 'App\Http\Controllers\DepartamentoController@update');
+Route::delete('departamentos/{id}', 'App\Http\Controllers\DepartamentoController@destroy');
+
 // USUARIOS
 Route::get('usuarios', [UsuarioController::class, 'index']);
 Route::post('usuarios/store', [UsuarioController::class, 'store']);
 Route::delete('usuarios/{id}', 'App\Http\Controllers\UsuarioController@destroy');
 
-// DEPARTAMENTOS
-Route::get('departamentos', [DepartamentoController::class, 'index']);
-Route::post('departamentos/store', [DepartamentoController::class, 'store']);
-Route::put('departamentos-edit/{id}', 'App\Http\Controllers\DepartamentoController@update');
-Route::delete('departamentos/{id}', 'App\Http\Controllers\DepartamentoController@destroy');

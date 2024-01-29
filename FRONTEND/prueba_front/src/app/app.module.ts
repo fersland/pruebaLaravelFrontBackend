@@ -14,6 +14,7 @@ import { UsuariosListComponent } from './usuarios/usuarios-list/usuarios-list.co
 import { UsuariosAddComponent } from './usuarios/usuarios-add/usuarios-add.component';
 import { DepartamentosListComponent } from './departamentos/departamentos-list/departamentos-list.component';
 import { DepartamentosAddComponent } from './departamentos/departamentos-add/departamentos-add.component';
+import { DepartamentoEditComponent } from './departamentos/departamento-edit/departamento-edit.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { DepartamentosAddComponent } from './departamentos/departamentos-add/dep
     UsuariosListComponent,
     UsuariosAddComponent,
     DepartamentosListComponent,
-    DepartamentosAddComponent
+    DepartamentosAddComponent,
+    DepartamentoEditComponent
   ],
   imports: [
     BrowserModule,
