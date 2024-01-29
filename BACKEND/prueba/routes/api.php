@@ -33,6 +33,8 @@ Route::delete('departamentos/{id}', 'App\Http\Controllers\DepartamentoController
 
 // USUARIOS
 Route::get('usuarios', [UsuarioController::class, 'index']);
+Route::get('usuarios/show/{id}', [UsuarioController::class, 'getUsuarioId']);
 Route::post('usuarios/store', [UsuarioController::class, 'store']);
+Route::put('usuarios-edit/{id}', [UsuarioController::class, 'update']);
 Route::delete('usuarios/{id}', 'App\Http\Controllers\UsuarioController@destroy');
 

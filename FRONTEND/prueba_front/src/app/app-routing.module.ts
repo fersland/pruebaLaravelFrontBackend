@@ -8,6 +8,7 @@ import { UsuariosAddComponent } from './usuarios/usuarios-add/usuarios-add.compo
 import { DepartamentosListComponent } from './departamentos/departamentos-list/departamentos-list.component';
 import { DepartamentosAddComponent } from './departamentos/departamentos-add/departamentos-add.component';
 import { DepartamentoEditComponent } from './departamentos/departamento-edit/departamento-edit.component';
+import { UsuariosEditComponent } from './usuarios/usuarios-edit/usuarios-edit.component';
 
 const routes: Routes = [
   { path: '', component: UsuariosListComponent},
@@ -17,6 +18,7 @@ const routes: Routes = [
 
   { path: 'usuarios', component: UsuariosListComponent },
   { path: 'usuarios/usuarios-add', component: UsuariosAddComponent},
+  { path: 'usuarios/edit/:id', component: UsuariosEditComponent},
 
   { path: 'departamentos', component: DepartamentosListComponent},
   { path: 'departamentos/edit/:id', component: DepartamentoEditComponent},

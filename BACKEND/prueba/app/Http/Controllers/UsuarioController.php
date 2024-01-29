@@ -40,9 +40,14 @@ class UsuarioController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function getUsuarioId($id)
     {
-        //
+        $usuario = Usuario::find($id);
+        if(is_null($usuario)) {
+            return response()->json(['message' => 'Usuario no encontrado', 404]);
+        }
+
+        return response()->json($usuario::find($id), 200);
     }
 
     /**
@@ -50,7 +55,17 @@ class UsuarioController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $usuario = Usuario::findOrFail($request->id);
+
+        $usuario->usuario = $request->usuario;
+        $usuario->primerNombre = $request->primerNombre;
+        $usuario->segundoNombre = $request->segundoNombre;
+        $usuario->primerApellido = $request->primerApellido;
+        $usuario->segundoApellido = $request->segundoApellido;
+        $usuario->idDepartamento = $request->idDepartamento;
+        $usuario->idCargo = $request->idCargo;
+        $usuario->save();
+        return $usuario;
     }
 
     /**

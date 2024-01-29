@@ -9,8 +9,8 @@ import { UsuariosService } from '../usuarios.service';
 })
 export class UsuariosAddComponent implements OnInit {
   formGroup :FormGroup;
-  dataCargos: any[] = [];
   CargosList: any;
+  DepartamentosList: any;
   SelectedValue:any;
   SelectedValue2:any;
   changeCargos(e){
@@ -22,9 +22,6 @@ export class UsuariosAddComponent implements OnInit {
     console.log(e.target.value);
     this.SelectedValue2=e.target.value;
   }
-
-  dataDepartamentos: any[] = [];
-  DepartamentosList: any;
 
   constructor(private formbuilder:FormBuilder, private service:UsuariosService) { 
     this.formGroup = this.formbuilder.group({
@@ -39,9 +36,6 @@ export class UsuariosAddComponent implements OnInit {
   }
 
   ngOnInit(){
-
-    //this.loadData();
-  
     this.service.getDataCargos().subscribe((data: any) => {
       this.CargosList = data;
     })
@@ -51,21 +45,7 @@ export class UsuariosAddComponent implements OnInit {
     })
   }
 
-  /*
-  loadData() {
-    this.service.getDataCargos().subscribe((result) => {
-      this.dataCargos = result;
-    });
-
-    this.service.getDataDepartamentos().subscribe((results) => {
-      this.dataDepartamentos = results;
-    });
-  }
-
-  */
-
   onFormSubmit(){
-    //this.datasaved=false;
     let book=this.formGroup.value;
     this.formGroup.reset();
   }
@@ -76,6 +56,5 @@ export class UsuariosAddComponent implements OnInit {
       console.log('Usuario added successfully!');
     });
   }
-
   
 }
