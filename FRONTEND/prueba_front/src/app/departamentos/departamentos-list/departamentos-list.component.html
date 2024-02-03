@@ -70,7 +70,7 @@
     
                   <select formControlName="idUsuario" (change)="changeUsuarios($event)" class="form-select">
                     <option [value]="item.id" *ngFor="let item of UsuariosList" [value]="item.id">
-                      {{ item.primerNombre + " " + item.primerApellido }}
+                      {{ item.usuario }}
                     </option>
                   </select>
     
