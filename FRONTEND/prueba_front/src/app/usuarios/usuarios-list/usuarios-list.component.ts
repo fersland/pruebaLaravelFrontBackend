@@ -34,7 +34,6 @@ export class UsuariosListComponent implements OnInit {
       segundoNombre:[' ',[Validators.required]],
       primerApellido:[' ',[Validators.required]],
       segundoApellido:[' ',[Validators.required]],
-      idDepartamento:[' ',[Validators.required]],
       idCargo:[' ',[Validators.required]],
     })
   }
@@ -56,6 +55,7 @@ export class UsuariosListComponent implements OnInit {
     this.service.saveUsuario(this.datosEntrada.value).subscribe(response => {
       console.log('Usuario added successfully!');
       this.usuariosList$ = this.service.viewUsuarios();
+      this.datosEntrada.reset();
     });
   }
 

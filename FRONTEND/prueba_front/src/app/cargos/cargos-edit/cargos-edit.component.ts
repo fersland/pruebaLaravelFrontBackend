@@ -30,7 +30,7 @@ ngOnInit(): void{
     codigo:[' ',[Validators.required]],
     nombre:[' ',[Validators.required]],
     activo:[' ',[Validators.required]],
-    idUsuario:[' ',[Validators.required]]
+    idDepartamento:[' ',[Validators.required]]
   })
   
   //this.id = this._route.snapshot.params['id'];
@@ -40,10 +40,10 @@ ngOnInit(): void{
       codigo: new FormControl(results['codigo']),
       nombre: new FormControl(results['nombre']),
       activo: new FormControl(results['activo']),
-      idUsuario: new FormControl(results['idUsuario'])
+      idDepartamento: new FormControl(results['idDepartamento'])
     })
   })
-  this.service.getUsuarios().subscribe((data: any) => {
+  this.service.getDepartamentos().subscribe((data: any) => {
     this.UsuariosList = data;    
   })
 }

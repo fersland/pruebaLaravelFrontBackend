@@ -29,7 +29,7 @@ export class DepartamentoEditComponent implements OnInit {
       codigo:[' ', [Validators.required]],
       nombre:[' ', [Validators.required]],
       activo:[' ', [Validators.required]],
-      idUsuario:[' ', [Validators.required]]
+      idDepartamento:[' ', [Validators.required]]
     })
 
     console.log(this._route.snapshot.params['id']);
@@ -40,10 +40,6 @@ export class DepartamentoEditComponent implements OnInit {
         activo: new FormControl(results['activo']),
         idUsuario: new FormControl(results['idUsuario'])
       })
-    })
-
-    this._service.getData().subscribe((respon: any) => {
-      this.UsuariosList = respon;
     })
   }
 

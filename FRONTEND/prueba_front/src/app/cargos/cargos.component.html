@@ -20,7 +20,7 @@
                       <tr>
                           <th>CODIGO</th>
                           <th>NOMBRE</th>
-                          <th>USUARIO</th>
+                          <th>DEPARTAMENTO</th>
                       </tr>
                   </thead>
 
@@ -28,7 +28,7 @@
                       <tr>
                           <td>{{ item.codigo }}</td>
                           <td>{{ item.nombre }}</td>
-                          <td>{{ item.usuario }}</td>
+                          <td>{{ item.dep }}</td>
                           <td>
                               <!--<button data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-outline-success">Editar</button> &nbsp;-->
 
@@ -74,19 +74,19 @@
               <select class="form-select" 
                       formControlName="activo" 
                             required >
-                <option value="true">SI</option>
-                <option value="false">NO</option>
+                <option value="1">SI</option>
+                <option value="0">NO</option>
               </select>
               
             </div>
             <div class="col-md-12">
-              <label class="form-label">Usuario</label>
+              <label class="form-label">Departamento</label>
 
               <select class="form-select" 
-                            formControlName="idUsuario" 
+                            formControlName="idDepartamento" 
                             (change)="changeUsuarios($event)" >
-                <option [value]="item.id" *ngFor="let item of UsuariosList" [value]="item.id">
-                  {{ item.usuario }}
+                <option [value]="item.id" *ngFor="let item of DepartamentosList" [value]="item.id">
+                  {{ item.nombre }}
                 </option>
               </select>
 

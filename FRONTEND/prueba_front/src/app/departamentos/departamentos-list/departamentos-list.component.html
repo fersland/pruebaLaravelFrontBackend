@@ -16,7 +16,6 @@
                     <tr>
                         <th>CODIGO</th>
                         <th>NOMBRE</th>
-                        <th>USUARIO</th>
                     </tr>
                 </thead>
 
@@ -24,7 +23,6 @@
                     <tr>
                         <td>{{ item.codigo }}</td>
                         <td>{{ item.nombre }}</td>
-                        <td>{{ item.usuario }}</td>
                         <td>
                             <a class="btn btn-outline-success" routerLink="/departamentos/edit/{{ item.id }}">Editar</a> &nbsp;
 
@@ -60,22 +58,10 @@
                 <div class="col-md-12">
                   <label for="validationServer03" class="form-label">Activo</label>
                   <select class="form-select" formControlName="activo" id="validationServer04" required>
-                    <option value="true">SI</option>
-                    <option value="false">NO</option>
+                    <option value="1">SI</option>
+                    <option value="0">NO</option>
                   </select>
                   
-                </div>
-                <div class="col-md-12">
-                  <label for="validationServer04" class="form-label">Usuario</label>
-    
-                  <select formControlName="idUsuario" (change)="changeUsuarios($event)" class="form-select">
-                    <option [value]="item.id" *ngFor="let item of UsuariosList" [value]="item.id">
-                      {{ item.usuario }}
-                    </option>
-                  </select>
-    
-                  <!-- Selected Valud: {{ SelectedValue }} -->
-    
                 </div>
     
                 <div class="col-12">

@@ -18,10 +18,7 @@ return new class extends Migration
             $table->string('segundoNombre', 40);
             $table->string('primerApellido', 40);
             $table->string('segundoApellido', 40);
-            $table->unsignedBigInteger('idDepartamento');
-            $table->foreign('idDepartamento')->references('id')->on('departamentos')->onDelete('cascade');
             $table->unsignedBigInteger('idCargo');
-            $table->foreign('idCargo')->references('id')->on('cargos')->onDelete('cascade');            
             $table->timestamps();
         });
     }

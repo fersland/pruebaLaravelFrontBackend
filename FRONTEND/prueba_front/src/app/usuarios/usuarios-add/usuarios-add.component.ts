@@ -8,9 +8,11 @@ import { UsuariosService } from '../usuarios.service';
   styleUrls: ['./usuarios-add.component.sass']
 })
 export class UsuariosAddComponent implements OnInit {
-  formGroup :FormGroup;
   CargosList: any;
   DepartamentosList: any;
+
+  formGroup :FormGroup;
+
   SelectedValue:any;
   SelectedValue2:any;
   changeCargos(e){
@@ -45,15 +47,11 @@ export class UsuariosAddComponent implements OnInit {
     })
   }
 
-  onFormSubmit(){
-    let book=this.formGroup.value;
-    this.formGroup.reset();
-  }
-
   onSubmit(){
     console.log(this.formGroup.value);
     this.service.saveUsuario(this.formGroup.value).subscribe(response => {
       console.log('Usuario added successfully!');
+      this.formGroup.reset();
     });
   }
   

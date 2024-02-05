@@ -9,7 +9,8 @@ import { Cargo } from './cargo';
 
 export class ServiceService {
 
-  readonly apiURL = 'http://127.0.0.1:8000/api/cargos';
+  apiURL = 'http://127.0.0.1:8000/api/cargos';
+  apiURLsave = 'http://127.0.0.1:8000/api/cargos/store';
   readonly apiURLEdit = 'http://127.0.0.1:8000/api/cargos-edit';
 
   constructor(private httpClient:HttpClient) { }
@@ -22,12 +23,12 @@ export class ServiceService {
     return this.httpClient.get(`http://127.0.0.1:8000/api/cargos/show/`+ id);
   }
 
-  saveCargo(model:Cargo):Observable<Cargo>{
-    return this.httpClient.post<Cargo>(`http://127.0.0.1:8000/api/cargos/store`,model);
+  getDepartamentos(): Observable<any[]> {
+    return this.httpClient.get<any[]>(`http://127.0.0.1:8000/api/departamentos`);
   }
 
-  getUsuarios(): Observable<any[]> {
-    return this.httpClient.get<any[]>(`http://127.0.0.1:8000/api/usuarios`);
+  saveCargo(model:Cargo):Observable<Cargo>{
+    return this.httpClient.post<Cargo>(this.apiURLsave,model);
   }
 
   updateData(id:number, newData: any): Observable<any> {

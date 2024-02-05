@@ -5,6 +5,5 @@ export interface Usuario {
     segundoNombre:string;
     primerApellido:string;
     segundoApellido:string;
-    idDepartamento:number;
     idCargo:number;
 }

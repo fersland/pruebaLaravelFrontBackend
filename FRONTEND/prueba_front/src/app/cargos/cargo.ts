@@ -1,7 +1,7 @@
 export interface Cargo {
-    id:any;
+    id:number;
     codigo:string;
     nombre:string;
-    activo:boolean;
-    idUsuario:number;
+    activo:number;
+    idDepartamento:number;
 }

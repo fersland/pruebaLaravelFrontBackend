@@ -12,7 +12,15 @@ class UsuarioController extends Controller
      */
     public function index()
     {
+        /*
         $usuarios = Usuario::all();
+        return response()->json($usuarios);
+*/
+
+        // TABLES REFERENCES
+        $usuarios = Usuario::join('cargos', 'cargos.id', '=', 'usuarios.idCargo')
+            ->get(['usuarios.*', 'cargos.nombre as car']);
+
         return response()->json($usuarios);
     }
 
@@ -27,7 +35,6 @@ class UsuarioController extends Controller
             'segundoNombre' => 'required',
             'primerApellido' => 'required',
             'segundoApellido' => 'required',
-            'idDepartamento' => 'required',
             'idCargo' => 'required',            
         ]);
 
@@ -62,7 +69,6 @@ class UsuarioController extends Controller
         $usuario->segundoNombre = $request->segundoNombre;
         $usuario->primerApellido = $request->primerApellido;
         $usuario->segundoApellido = $request->segundoApellido;
-        $usuario->idDepartamento = $request->idDepartamento;
         $usuario->idCargo = $request->idCargo;
         $usuario->save();
         return $usuario;

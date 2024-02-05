@@ -42,16 +42,6 @@
                     <input type="text" class="form-control" formControlName="segundoApellido" id="validationServer02" required>
                   </div>
 
-                <div class="col-md-6">
-                  <label for="validationServer03" class="form-label">Departamento</label>
-                  <select formControlName="idDepartamento" (change)="changeDepartamentos($event)" class="form-select">
-
-                    <option [value]="item.id" *ngFor="let item of DepartamentosList" [value]="item.id">
-                      {{ item.nombre }}
-                    </option>
-                  </select>
-                  
-                </div>
                 <div class="col-md-3">
                   <label for="validationServer04" class="form-label">Cargo</label>
                   <select formControlName="idCargo" (change)="changeCargos($event)" class="form-select">

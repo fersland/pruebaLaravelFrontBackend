@@ -37,7 +37,6 @@ export class UsuariosEditComponent implements OnInit {
       segundoNombre:[' ', [Validators.required]],
       primerApellido:[' ', [Validators.required]],
       segundoApellido:[' ', [Validators.required]],
-      idDepartamento:[' ', [Validators.required]],
       idCargo:[' ', [Validators.required]]
     })
 
@@ -50,7 +49,6 @@ export class UsuariosEditComponent implements OnInit {
         segundoNombre: new FormControl(response['segundoNombre']),
         primerApellido: new FormControl(response['primerApellido']),
         segundoApellido: new FormControl(response['segundoApellido']),
-        idDepartamento: new FormControl(response['idDepartamento']),
         idCargo: new FormControl(response['idCargo'])
       })
     })

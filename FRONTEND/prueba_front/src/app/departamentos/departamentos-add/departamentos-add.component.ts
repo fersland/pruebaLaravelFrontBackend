@@ -33,30 +33,19 @@ export class DepartamentosAddComponent {
   ngOnInit(){
 
     this.cargosList$ = this.service.viewDepartamentos();
-    this.loadData();
-  
-    this.service.getData().subscribe((data: any) => {
-      this.UsuariosList = data;
-    })
   }
 
   
-onFormSubmit(){
-  let book=this.formGroup.value;
-  this.formGroup.reset();
-}
+  onFormSubmit(){
+    let book=this.formGroup.value;
+    this.formGroup.reset();
+  }
 
-onSubmit(){
-  console.log(this.formGroup.value);
-  this.service.saveCargo(this.formGroup.value).subscribe(response => {
-    console.log('Cargo added successfully!');
-      //this.cargosList$ = this.service.viewCargos();
-  })
-}
-
-loadData() {
-  this.service.getData().subscribe((result) => {
-    this.data = result;
-  });
-}
+  onSubmit(){
+    console.log(this.formGroup.value);
+    this.service.saveCargo(this.formGroup.value).subscribe(response => {
+      console.log('Cargo added successfully!');
+        //this.cargosList$ = this.service.viewCargos();
+    })
+  }
 }

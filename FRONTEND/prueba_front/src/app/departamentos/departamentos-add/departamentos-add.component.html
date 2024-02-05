@@ -32,18 +32,6 @@
                   </select>
                   
                 </div>
-                <div class="col-md-3">
-                  <label for="validationServer04" class="form-label">Usuario</label>
-
-                  <select formControlName="idUsuario" (change)="changeUsuarios($event)" class="form-control">
-                    <option [value]="item.id" *ngFor="let item of UsuariosList" [value]="item.id">
-                      {{ item.primerNombre }}
-                    </option>
-                  </select>
-
-                  <!-- Selected Valud: {{ SelectedValue }} -->
-
-                </div>
 
                 <div class="col-12">
                   <button class="btn btn-primary" type="submit">Guardar</button>

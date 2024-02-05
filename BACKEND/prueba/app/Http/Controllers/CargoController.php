@@ -11,16 +11,10 @@ class CargoController extends Controller
      */
     public function index()
     {
-
-        /*
-        $cargos = Cargo::all();
-        return response()->json($cargos);
-
-        */
-
         // PRUEBA INNER 
-        $inner = Cargo::join('usuarios', 'cargos.idUsuario', '=', 'usuarios.id')
-            ->get(['cargos.*', 'usuarios.usuario', 'usuarios.primerNombre', 'usuarios.segundoNombre', 'usuarios.primerApellido', 'usuarios.segundoApellido']);
+        //$inner = Cargo::all();
+        $inner = Cargo::join('departamentos', 'departamentos.id', '=', 'cargos.idDepartamento')
+            ->get(['cargos.*', 'departamentos.nombre as dep']);
         return response()->json($inner);
     }
 
@@ -33,13 +27,11 @@ class CargoController extends Controller
             'codigo' => 'required',
             'nombre' => 'required',
             'activo' => 'required',
-            'idUsuario' => 'required'
+            'idDepartamento' => 'required'
         ]);
 
         Cargo::create($request->post());
-        return response()->json([
-            'message' => 'Added Cargo!'
-        ]);
+        return response()->json(['message' => 'Added Cargo!']);
     }
 
     /**
@@ -65,7 +57,7 @@ class CargoController extends Controller
         $cargos->codigo = $request->codigo;
         $cargos->nombre = $request->nombre;
         $cargos->activo = $request->activo;
-        $cargos->idUsuario = $request->idUsuario;
+        $cargos->idDepartamento = $request->idDepartamento;
 
         $cargos->save();
         return $cargos;

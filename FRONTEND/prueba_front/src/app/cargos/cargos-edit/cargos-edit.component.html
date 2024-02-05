@@ -38,7 +38,7 @@
                 </div>
                 <div class="col-md-12">
                   <label class="form-label">Activo</label>
-                  <select class="form-select" id="activo"
+                  <select class="form-select"
                           formControlName="activo" 
                                 required >
                     <option value="1">SI</option>
@@ -47,13 +47,13 @@
                   
                 </div>
                 <div class="col-md-12">
-                  <label class="form-label">Usuario</label>
+                  <label class="form-label">Departamento</label>
     
                   <select class="form-select" 
-                                formControlName="idUsuario" id="idUsuario"
+                                formControlName="idDepartamento"
                                 (change)="changeUsuarios($event)" >
                     <option [value]="item.id" *ngFor="let item of UsuariosList" [value]="item.id">
-                      {{ item.usuario }}
+                      {{ item.nombre }}
                     </option>
                   </select>
     

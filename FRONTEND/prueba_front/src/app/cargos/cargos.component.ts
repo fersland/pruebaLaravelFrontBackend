@@ -19,10 +19,10 @@ export class CargosComponent implements OnInit {
     })
   }
 
-  UsuariosList: any;
+  DepartamentosList: any;
   SelectedValue:any;
   changeUsuarios(e){
-    //console.log(e.target.value); => VERIFICAR QUE ID SE SELECCIONÓ
+    console.log(e.target.value); // => VERIFICAR QUE ID SE SELECCIONÓ
     this.SelectedValue=e.target.value;
   }
 
@@ -38,11 +38,11 @@ export class CargosComponent implements OnInit {
       codigo:[' ',[Validators.required,Validators.pattern('a-zA-ZñÑá-úÁ-Ú')]],
       nombre:[' ',[Validators.required,Validators.pattern('a-zA-ZñÑá-úÁ-Ú')]],
       activo:[' ',[Validators.required]],
-      idUsuario:[' ',[Validators.required]]
+      idDepartamento:[' ',[Validators.required]],
     })
 
-    this.service.getUsuarios().subscribe((dataListarUsuarios: any) => {
-      this.UsuariosList = dataListarUsuarios;
+    this.service.getDepartamentos().subscribe((listDepartments: any) => {
+      this.DepartamentosList = listDepartments;
       });
   }
 
@@ -57,7 +57,7 @@ export class CargosComponent implements OnInit {
 
   cargarDataUsuarios: any[] = [];
   loadDataUsuarios() {
-    this.service.getUsuarios().subscribe((result) => {
+    this.service.getDepartamentos().subscribe((result) => {
       this.cargarDataUsuarios = result;
     });
   }

@@ -11,14 +11,8 @@ class DepartamentoController extends Controller
      */
     public function index()
     {
-        /*
+        
         $departamento = Departamento::all();
-        return response()->json($departamento);
-
-        */
-
-        $departamento = Departamento::join('usuarios', 'departamentos.idUsuario', '=', 'usuarios.id')
-                ->get(['departamentos.*', 'usuarios.usuario', 'usuarios.primerNombre', 'usuarios.segundoNombre', 'usuarios.primerApellido', 'usuarios.segundoApellido']);
         return response()->json($departamento);
     }
 
@@ -31,8 +25,7 @@ class DepartamentoController extends Controller
         $request->validate([
             'codigo' => 'required',
             'nombre' => 'required',
-            'activo' => 'required',
-            'idUsuario' => 'required'
+            'activo' => 'required'
         ]);
 
         Departamento::create($request->post());
@@ -63,7 +56,6 @@ class DepartamentoController extends Controller
         $departamento = Departamento::findOrFail($request->id);
         $departamento->nombre = $request->nombre;
         $departamento->activo = $request->activo;
-        $departamento->idUsuario = $request->idUsuario;
 
         $departamento->save();
         return $departamento;

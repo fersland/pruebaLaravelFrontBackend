@@ -25,18 +25,12 @@ export class DepartamentosListComponent {
     this.formGroup = this.formbuilder.group({
       codigo:[' ',[Validators.required]],
       nombre:[' ',[Validators.required]],
-      activo:[' ',[Validators.required]],
-      idUsuario:[' ',[Validators.required]]
+      activo:[' ',[Validators.required]]
     })
   }
 
   ngOnInit(): void{
     this.departamentosList$ = this.service.viewDepartamentos();
-    this.loadData();
-
-    this.service.getData().subscribe((data: any) => {
-      this.UsuariosList = data;
-    })
   }
 
   onSubmit(){
@@ -45,12 +39,6 @@ export class DepartamentosListComponent {
       console.log('Cargo added successfully!');
         this.departamentosList$ = this.service.viewDepartamentos();
     })
-  }
-
-  loadData() {
-    this.service.getData().subscribe((result) => {
-      this.data = result;
-    });
   }
 
   deleteCargo(id:number){

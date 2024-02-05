@@ -46,20 +46,6 @@
                 </select>
                 
               </div>
-              <div class="col-md-12">
-                <label class="form-label">Usuario</label>
-  
-                <select class="form-select" 
-                              formControlName="idUsuario" id="idUsuario"
-                              (change)="changeUsuarios($event)" >
-                  <option [value]="item.id" *ngFor="let item of UsuariosList" [value]="item.id">
-                    {{ item.usuario }}
-                  </option>
-                </select>
-  
-                <!-- Selected Valud: {{ SelectedValue }} -->
-  
-              </div>
   
         </div>
         <div class="modal-footer">

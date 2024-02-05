@@ -15,10 +15,6 @@ export class DepartamentosService {
     return this.http.get<any>(`http://127.0.0.1:8000/api/departamentos`);
   }
 
-  getData(): Observable<any[]> {
-    return this.http.get<any[]>(`http://127.0.0.1:8000/api/usuarios`);
-  }
-
   getDepartamentosId(id){
     return this.http.get(`http://127.0.0.1:8000/api/departamentos/show/`+ id);
   }

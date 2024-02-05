@@ -17,6 +17,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// => http://127.0.0.1:8000/api/
+
 // CARGOS
 Route::get('cargos', [CargoController::class, 'index']);
 Route::get('cargos/show/{id}', [CargoController::class, 'getCargoId']);

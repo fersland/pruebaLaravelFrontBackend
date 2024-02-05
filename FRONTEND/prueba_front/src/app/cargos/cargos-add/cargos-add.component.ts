@@ -13,7 +13,6 @@ import { ServiceService } from '../service.service';
 })
 export class CargosAddComponent implements OnInit {
   cargosList$!:Observable<any[]>;
-  data: any[] = [];
 
   formGroup :FormGroup;
 
@@ -24,41 +23,30 @@ export class CargosAddComponent implements OnInit {
     this.SelectedValue=e.target.value;
   }
 
-constructor(private formbuilder:FormBuilder, private service:ServiceService) { 
-  this.formGroup = this.formbuilder.group({
-    codigo:[' ',[Validators.required]],
-    nombre:[' ',[Validators.required]],
-    activo:[' ',[Validators.required]],
-    idUsuario:[' ',[Validators.required]]
-  })
-}
-ngOnInit(){
+  constructor(private formbuilder:FormBuilder, private service:ServiceService) { 
+    this.formGroup = this.formbuilder.group({
+      codigo:[' ',[Validators.required]],
+      nombre:[' ',[Validators.required]],
+      activo:[' ',[Validators.required]],
+      idDepartamento:[' ',[Validators.required]],
+    })
+  }
+  ngOnInit(){
 
-  this.cargosList$ = this.service.viewCargos();
-  this.loadData();
+    this.cargosList$ = this.service.viewCargos();
 
-  this.service.getUsuarios().subscribe((data: any) => {
-    this.UsuariosList = data;
-  })
-}
+    this.service.getDepartamentos().subscribe((data: any) => {
+      this.UsuariosList = data;
+    })
+  }
 
-onFormSubmit(){
-  let book=this.formGroup.value;
-  this.formGroup.reset();
-}
-
-onSubmit(){
-  console.log(this.formGroup.value);
-  this.service.saveCargo(this.formGroup.value).subscribe(response => {
-    console.log('Cargo added successfully!');
-      //this.cargosList$ = this.service.viewCargos();
-  })
-}
-
-loadData() {
-  this.service.getUsuarios().subscribe((result) => {
-    this.data = result;
-  });
-}
+  onSubmit(){
+    console.log(this.formGroup.value);
+    this.service.saveCargo(this.formGroup.value).subscribe(response => {
+      this.cargosList$ = this.service.viewCargos();
+      this.formGroup.reset();
+      console.log('Usuario added successfully!');
+    });
+  }
 
 }
