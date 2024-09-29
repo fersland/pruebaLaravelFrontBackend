@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Producto } from './producto';
 
 @Injectable({
   providedIn: 'root'
@@ -12,5 +13,9 @@ export class ProductosService {
 
   listProducts():Observable<any[]>{
     return this._http.get<any>(this.apiUrl);
+  }
+
+  save(model:Producto):Observable<Producto>{
+    return this._http.post<Producto>(this.apiUrl + "/store", model);
   }
 }

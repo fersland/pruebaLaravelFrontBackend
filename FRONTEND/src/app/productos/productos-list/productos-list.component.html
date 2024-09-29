@@ -38,3 +38,63 @@
     </div>
 </div>
 
+<!--- MODAL -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+    <div class="modal-dialog modal-ml">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Formulario de Registro</h1>
+          
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form class="row g-3" method="post" [formGroup]="_formGroup" (ngSubmit)="insertData()">
+        <div class="modal-body">
+          <p>Los campos con (*) son obligatgorios.</p>
+          
+              <div class="col-md-12">
+                <label class="form-label">Codigo Producto</label>
+                <input type="text" class="form-control" 
+                              formControlName="codigoProducto" 
+                              required >
+              </div>
+              <div class="col-md-12">
+                <label class="form-label">Descripción</label>
+                <input type="text" class="form-control" 
+                              formControlName="descripcion" 
+                              onkeydown="return /[a-z, ]/i.test(event.key)" 
+                              required >
+              </div>
+
+              <div class="col-md-12">
+                <label class="form-label">Precio</label>
+                <input type="text" class="form-control" 
+                              formControlName="precio" 
+                              required >
+              </div>
+              <div class="col-md-12">
+                <label class="form-label">Existencia</label>
+                <input type="text" class="form-control" 
+                              formControlName="existencia"
+                              required >
+              </div>
+              <div class="col-md-12">
+                <label class="form-label">Activo</label>
+                <select class="form-select" 
+                        formControlName="activo" 
+                              required >
+                  <option value="1">SI</option>
+                  <option value="0">NO</option>
+                </select>
+                
+              </div>
+
+  
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-primary" type="submit">Guardar</button>
+        </div>
+  
+      </form>
+      </div>
+    </div>
+</div>

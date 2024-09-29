@@ -68,7 +68,7 @@ export class CargosComponent implements OnInit {
       .subscribe(book=>{
         this.cargosList$ = this.service.viewCargos();
       })
-    }  
+    }
   }
 
   // ACTUALIZAR ++++++++++++++++++++++++

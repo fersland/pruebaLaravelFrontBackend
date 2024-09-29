@@ -43,4 +43,5 @@ Route::delete('usuarios/{id}', 'App\Http\Controllers\UsuarioController@destroy')
 
 // PRODUCTOS
 Route::get('productos', [ProductoController::class, 'index']);
+Route::post('productos/store', [ProductoController::class, 'store']);
 
